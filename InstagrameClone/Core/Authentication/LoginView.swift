@@ -18,7 +18,7 @@ struct LoginView: View {
                 
                 Spacer()
                 //logo image
-                Image("IG_Logo")
+                Image("IG_Title")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 220, height: 100)
@@ -66,18 +66,20 @@ struct LoginView: View {
                 
                 HStack{
                     Rectangle()
-                        .frame(width: (UIScreen.main.bounds.width / 2) - 40, height:0.5)
+                            .frame(maxWidth: .infinity, minHeight: 0.5, maxHeight: 0.5)
                        
                     
                     Text("OR")
                         .font(.footnote)
                         .fontWeight(.semibold)
+                        .padding(.horizontal, 8)
                     
                     
                     Rectangle()
-                        .frame(width: (UIScreen.main.bounds.width / 2) - 40, height:0.5)
+                            .frame(maxWidth: .infinity, minHeight: 0.5, maxHeight: 0.5)
                        
                 }
+                .padding(.horizontal)
                 .foregroundStyle(.gray)
                 
                 HStack {
