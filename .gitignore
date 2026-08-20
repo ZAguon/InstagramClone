@@ -18,5 +18,10 @@ XcodeWorkspaceSettings.xcsettings
 
 # Firebase & Cloud Secrets
 # ====================================
-# Firebase config contains public keys, but ignore it if you use staging/prod variants
-# GoogleService-Info.plist
+GoogleService-Info.plist
+
+# Environment variables
+# ====================================
+.env
+.env.*
+!.env.example
