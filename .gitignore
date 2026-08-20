@@ -1,0 +1,22 @@
+# Xcode
+# ====================================
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+XcodeWorkspaceSettings.xcsettings
+
+# Swift Package Manager
+# ====================================
+.build/
+.swiftpm/
+# Delete the line below if you want to lock package versions in git
+# Packages/
+
+# Firebase & Cloud Secrets
+# ====================================
+# Firebase config contains public keys, but ignore it if you use staging/prod variants
+# GoogleService-Info.plist

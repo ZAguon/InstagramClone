@@ -1,35 +1,39 @@
 //
-//  SignUpView.swift
+//  AddEmailView.swift
 //  InstagrameClone
 //
-//  Created by Zachary Aguon on 8/9/26.
+//  Created by Zachary Aguon on 8/7/26.
 //
 
 import SwiftUI
 
-struct SignUpView: View {
+struct AddEmailView: View {
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: RegristrationViewModel
     
     var body: some View {
-        
         VStack(spacing: 12){
-            Spacer()
-            Text("Welcone to Instagram, Ronan")
+            Text("Add your email")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top)
-                .multilineTextAlignment(.center)
             
-            Text("Click below to complete registration and start using Instagram ")
+            Text("You'll use this email to sing in to your account")
                 .font(.footnote)
+                .foregroundStyle(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
-           
-            Button {
-                print("Complete sign up")
+            
+            TextField("Email", text: $viewModel.email)
+                .textInputAutocapitalization(.none)
+                .modifier(TextFieldCustom())
+            
+            NavigationLink{
+                CreateUserNameView()
+                    .navigationBarBackButtonHidden(true)
             } label: {
-                Text("Complete sign up ")
+                Text("Next")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
@@ -48,14 +52,14 @@ struct SignUpView: View {
             ToolbarItem(placement: .topBarLeading) {
                 Image(systemName: "chevron.left")
                     .imageScale(.large)
-                onTapGesture {
-                    dismiss()
-                }
+                    .onTapGesture {
+                        dismiss()
+                    }
             }
         }
     }
 }
 
 #Preview {
-    SignUpView()
+    AddEmailView()
 }

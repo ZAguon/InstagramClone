@@ -1,5 +1,5 @@
 //
-//  CreateUserNameView.swift
+//  SignUpView.swift
 //  InstagrameClone
 //
 //  Created by Zachary Aguon on 8/9/26.
@@ -7,33 +7,31 @@
 
 import SwiftUI
 
-struct CreateUserNameView: View {
+struct SignUpView: View {
     
-    @State private var username = ""
     @Environment(\.dismiss) var dismiss
-    
+    @EnvironmentObject var viewModel: RegristrationViewModel
+
+
     var body: some View {
+
         VStack(spacing: 12){
-            Text("Create Username")
+            Spacer()
+            Text("Welcone to Instagram, \(viewModel.username)")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top)
+                .multilineTextAlignment(.center)
             
-            Text("You'll use this Username to sign in to your account")
+            Text("Click below to complete registration and start using Instagram ")
                 .font(.footnote)
-                .foregroundStyle(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
-            
-            TextField("Username", text: $username)
-                .textInputAutocapitalization(.none)
-                .modifier(TextFieldCustom())
-            
-            NavigationLink{
-                CreatePasswordView()
-                    .navigationBarBackButtonHidden(true)
+           
+            Button {
+                Task { try await viewModel.createUser() }
             } label: {
-                Text("Next")
+                Text("Complete sign up ")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
@@ -43,21 +41,23 @@ struct CreateUserNameView: View {
             }
             
             .padding(.vertical)
-
+            
+            
             Spacer()
         }
+        
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Image(systemName: "chevron.left")
                     .imageScale(.large)
-                onTapGesture {
-                    dismiss()
-                }
+                    .onTapGesture {
+                        dismiss()
+                    }
             }
         }
     }
 }
 
 #Preview {
-    CreateUserNameView()
+    SignUpView()
 }

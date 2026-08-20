@@ -1,36 +1,38 @@
 //
-//  AddEmailView.swift
+//  CreateUserNameView.swift
 //  InstagrameClone
 //
-//  Created by Zachary Aguon on 8/7/26.
+//  Created by Zachary Aguon on 8/9/26.
 //
 
 import SwiftUI
 
-struct AddEmailView: View {
+struct CreateUserNameView: View {
     
-    @State private var email = ""
+    
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: RegristrationViewModel
+    
     
     var body: some View {
         VStack(spacing: 12){
-            Text("Add your email")
+            Text("Create Username")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top)
             
-            Text("You'll use this email to sing in to your account")
+            Text("You'll use this Username to sign in to your account")
                 .font(.footnote)
                 .foregroundStyle(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             
-            TextField("Email", text: $email)
+            TextField("Username", text: $viewModel.username)
                 .textInputAutocapitalization(.none)
                 .modifier(TextFieldCustom())
             
             NavigationLink{
-                CreateUserNameView()
+                CreatePasswordView()
                     .navigationBarBackButtonHidden(true)
             } label: {
                 Text("Next")
@@ -43,23 +45,21 @@ struct AddEmailView: View {
             }
             
             .padding(.vertical)
-            
-            
+
             Spacer()
         }
-        
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Image(systemName: "chevron.left")
                     .imageScale(.large)
-                onTapGesture {
-                    dismiss()
-                }
+                    .onTapGesture {
+                        dismiss()
+                    }
             }
         }
     }
 }
 
 #Preview {
-    AddEmailView()
+    CreateUserNameView()
 }
